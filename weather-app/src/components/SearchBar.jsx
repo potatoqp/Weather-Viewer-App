@@ -1,22 +1,20 @@
 import { useState } from "react";
 
-function SearchBar({ city, setCity }) {
+function SearchBar({ city, setCity, getWeather }) {
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder="Enter city..."
+        value={city}
+        onChange={(e) => setCity(e.target.value)}
+      />
 
-
-    return (
-        <div>
-
-            <input
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                placeholder="Enter city"
-            />
-
-            <button>Search</button>
-
-        </div>
-    )
-
+      <button onClick={getWeather}>
+        Search
+      </button>
+    </div>
+  );
 }
 
-export default SearchBar
+export default SearchBar;
