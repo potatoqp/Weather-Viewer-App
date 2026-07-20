@@ -2,7 +2,7 @@ function WeatherCard({ weather }) {
 
     return (
 
-        <div>
+        <div className="weather-card">
 
             <h2>{weather.name}</h2>
 

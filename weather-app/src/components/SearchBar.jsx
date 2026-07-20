@@ -3,7 +3,7 @@ import { useState } from "react";
 
 function SearchBar({ city, setCity, getWeather }) {
   return (
-    <div>
+    <div className="search-bar">
       <input
         type="text"
         placeholder="Enter city..."

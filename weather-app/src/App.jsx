@@ -44,7 +44,8 @@ function App() {
 }
 
     return (
-        <>
+        <div className = "app">
+            <div className ="weather-container">
             <h1>Weather App</h1>
 
             <SearchBar
@@ -53,13 +54,14 @@ function App() {
                 getWeather={getWeather}
             />
 
-            {loading && <p>Loading...</p>}
+            {loading && <p className="loading">Loading...</p>}
 
-            {error && <p>{error}</p>}
+            {error && <p className="error">{error}</p>}
 
             {weather && <WeatherCard weather={weather} />}
 
-        </>
+            </div>
+        </div>
     );
 
 }
