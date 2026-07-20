@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+
 function SearchBar({ city, setCity, getWeather }) {
   return (
     <div>
