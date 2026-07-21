@@ -7,6 +7,7 @@
   justify-content: center;
   align-items: center;
   padding: 20px;
+  transition: background .7s ease;
 }
 
 .weather-container {
@@ -111,5 +112,29 @@ h1 {
 
     padding:15px;
 
+}
+
+.app.bg-default {
+  background: linear-gradient(135deg, #6dd5ed, #2193b0);
+}
+
+.app.bg-clear {
+  background: linear-gradient(135deg, #f6d365, #fda085);
+}
+
+.app.bg-clouds {
+  background: linear-gradient(135deg, #bdc3c7, #2c3e50);
+}
+
+.app.bg-rain {
+  background: linear-gradient(135deg, #4b79a1, #283e51);
+}
+
+.app.bg-snow {
+  background: linear-gradient(135deg, #e6dada, #274046);
+}
+
+.app.bg-thunderstorm {
+  background: linear-gradient(135deg, #232526, #414345);
 }
 

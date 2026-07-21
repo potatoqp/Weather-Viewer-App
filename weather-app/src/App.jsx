@@ -8,6 +8,8 @@ function App() {
     const [weather, setWeather] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const weatherType = weather?.weather[0].main.toLowerCase();
+    const backgroundClass = weatherType ? `bg-${weatherType}` : "bg-default";
 
    async function getWeather() {
 
@@ -44,7 +46,7 @@ function App() {
 }
 
     return (
-        <div className = "app">
+        <div className = {`app ${backgroundClass}`}>
             <div className ="weather-container">
             <h1>Weather App</h1>
 
