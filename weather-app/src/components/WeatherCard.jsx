@@ -1,23 +1,55 @@
 function WeatherCard({ weather }) {
 
+    const icon = weather.weather[0].icon;
+
+    const iconUrl =
+        `https://openweathermap.org/img/wn/${icon}@4x.png`;
+
     return (
 
         <div className="weather-card">
 
-            <h2>{weather.name}</h2>
+            <h2>
+                {weather.name}, {weather.sys.country}
+            </h2>
 
-            <h3>{weather.main.temp}°C</h3>
+            <img
+                src={iconUrl}
+                alt="Weather Icon"
+            />
 
-            <p>{weather.weather[0].description}</p>
+            <h3>
+                {Math.round(weather.main.temp)}°C
+            </h3>
 
-            <p>Humidity: {weather.main.humidity}%</p>
+            <p>
+                {weather.weather[0].description}
+            </p>
 
-            <p>Wind: {weather.wind.speed} m/s</p>
+            <div className="weather-info">
+
+                <div>
+
+                    Humidity💧
+
+                    <p>{weather.main.humidity}%</p>
+
+                </div>
+
+                <div>
+
+                    Wind Speed 🌬️
+
+                    <p>{weather.wind.speed} m/s</p>
+
+                </div>
+
+            </div>
 
         </div>
 
-    )
+    );
 
 }
 
-export default WeatherCard
+export default WeatherCard;
