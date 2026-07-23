@@ -10,8 +10,9 @@ function App() {
     const [error, setError] = useState("");
     const weatherType = weather?.weather[0].main.toLowerCase();
     const backgroundClass = weatherType ? `bg-${weatherType}` : "bg-default";
+    const [searchHistory, setSearchHistory] = useState([]);
 
-   async function getWeather() {
+   async function getWeather(searchCity = city) {
 
     const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
 
@@ -20,8 +21,8 @@ function App() {
 
     try {
 
-        const response = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
+        const response = await  fetch(
+            `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&appid=${API_KEY}&units=metric`
         );
 
         if (!response.ok) {
@@ -31,6 +32,20 @@ function App() {
         const data = await response.json();
 
         setWeather(data);
+
+        setSearchHistory((prevHistory) => {
+
+            const updatedHistory = [
+                searchCity,
+                ...prevHistory.filter(
+                    (searchedCity) =>
+                        searchedCity.toLowerCase() !== searchCity.toLowerCase()
+                ),
+            ];
+
+         return updatedHistory.slice(0, 5);
+
+        });
 
     } catch (err) {
 
@@ -55,6 +70,30 @@ function App() {
                 setCity={setCity}
                 getWeather={getWeather}
             />
+            {searchHistory.length > 0 && (
+
+    <div className="history">
+
+        <h3>Recent Searches</h3>
+
+        <div className="history-buttons">
+
+            {searchHistory.map((searchedCity) => (
+
+                <button
+                    key={searchedCity}
+                    onClick={() => getWeather(searchedCity)}
+                >
+                    {searchedCity}
+                </button>
+
+            ))}
+
+        </div>
+
+    </div>
+
+)}
 
             {loading && <p className="loading">Loading...</p>}
 

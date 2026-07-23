@@ -11,11 +11,12 @@ function SearchBar({ city, setCity, getWeather }) {
         onChange={(e) => setCity(e.target.value)}
       />
 
-      <button onClick={getWeather}>
+      <button onClick={() => getWeather(city)}>
         Search
       </button>
     </div>
   );
 }
+
 
 export default SearchBar;
