@@ -14,6 +14,11 @@ function App() {
 
    async function getWeather(searchCity = city) {
 
+    if (!searchCity.trim()) {
+        setError("Enter a valid city.");
+        return;
+    }
+
     const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
 
     setLoading(true);
@@ -49,9 +54,11 @@ function App() {
 
     } catch (err) {
 
-        setWeather(null);
-        setError(err.message);
-
+        if (err.message === "city not found") {
+            setError("City not found.");
+        } else {
+            setError(err.message);
+        }
     } finally {
 
         setLoading(false);
@@ -69,6 +76,7 @@ function App() {
                 city={city}
                 setCity={setCity}
                 getWeather={getWeather}
+                setError={setError}
             />
             {searchHistory.length > 0 && (
 
